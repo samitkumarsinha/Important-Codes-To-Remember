@@ -9,4 +9,7 @@ Angular extract specific fields from json in service
        })
     )
   }
-  
+  //--------in short
+  map((obj:User[]) => {
+    return obj.map(data => ({'username': data.username, 'password': data.password})) 
+  })
