@@ -1,0 +1,12 @@
+Angular extract specific fields from json in service
+ customlist(): Observable<CustomUser[]>{
+    return this.http.get<User[]>(`${this.url}/api/list`).pipe(
+       map((obj:User[]) => {
+          let result = obj.map((data: CustomUser) => {
+            return ({'username': data.username, 'password': data.password})
+          })
+          return result;
+       })
+    )
+  }
+  
