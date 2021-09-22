@@ -13,3 +13,16 @@ Angular extract specific fields from json in service
   map((obj:User[]) => {
     return obj.map(data => ({'username': data.username, 'password': data.password})) 
   })
+  //--------depth one level et company from https://jsonplaceholder.typicode.com/users
+  companydata(): Observable<MyList[]>{
+    return this.http.get<any>('https://jsonplaceholder.typicode.com/users').pipe(
+      map((obj:any)=>{
+        console.log(obj)
+        return obj.map(
+          (data1:any) => {
+            let mydata:MyList = data1.company;
+            return ({'name': mydata.name,'catchPhrase': mydata.catchPhrase, 'bs': mydata.bs})
+          }
+        )
+      })
+    )}
