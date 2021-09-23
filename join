@@ -16,6 +16,12 @@
   let result = json1.map((x: any) => Object.assign(x, json2.find((y: any) => y.email == x.email)));
 
  //----------------------inner join common in both --------
+  var result = json1.filter(function (o1: any) {
+    return json2.some(function (o2: any) {
+     return o1.email === o2.email ? Object.assign(o1, o2) : ''; // return the ones with equal id
+    });
+  });
+ //-------------------only rec from 1st ob common in 2nd-----
   let result = json1.filter((o1:any) => json2.some((o2:any) => o1.email === o2.email));
       console.log(result)
  //----------------------exist in 2 not in 1---------------
