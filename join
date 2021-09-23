@@ -17,5 +17,7 @@
       console.log(result)
  //----------------------exist in 2 not in 1---------------
   let result = json1.filter((o1:any) => !json2.some((o2:any) => o1.email === o2.email));
+//-----------------------exist in 1 not in 2---------------
+  let result = json2.filter((o1:any) => !json1.some((o2:any) => o1.email === o2.email));
 
  
