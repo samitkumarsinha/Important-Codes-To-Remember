@@ -12,5 +12,8 @@
       let res = json2.map((x: { email: any; }) => Object.assign(x, json1.find((y: { email: any; }) => y.email == x.email)));
 
       console.log(res);
- //-----------------------------------------------
+ //----------------------inner join common in both --------
+  let result = json1.filter((o1:any) => json2.some((o2:any) => o1.email === o2.email));
+      console.log(result)
+ //-------------------------------------------------------
  
