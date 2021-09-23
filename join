@@ -15,5 +15,7 @@
  //----------------------inner join common in both --------
   let result = json1.filter((o1:any) => json2.some((o2:any) => o1.email === o2.email));
       console.log(result)
- //-------------------------------------------------------
+ //----------------------exist in 2 not in 1---------------
+  let result = json1.filter((o1:any) => !json2.some((o2:any) => o1.email === o2.email));
+
  
