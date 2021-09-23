@@ -1,0 +1,16 @@
+ //------------------forkjoin (inner)------------
+ profile(): Observable<any>{
+    let profile =this.http.get<any>(`${this.url}/api/profile`)
+    let user = this.http.get<any>(`${this.url}/api/list`)
+    let ret$ = forkJoin([profile, user])
+    return ret$;
+  }
+ //----------------subscribe----------------------
+     this.ds.profile().subscribe(resp => {
+      let json1 = resp[0];
+      let json2 = resp[1];
+      let res = json2.map((x: { email: any; }) => Object.assign(x, json1.find((y: { email: any; }) => y.email == x.email)));
+
+      console.log(res);
+ //-----------------------------------------------
+ 
