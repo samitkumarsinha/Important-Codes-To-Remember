@@ -26,3 +26,23 @@ Angular extract specific fields from json in service
         )
       })
     )}
+-----------------------------------------------------------------------------
+SwitchMap: get data from two sources
+  getUser(): Observable<User>{
+    return this.http.get<any>(`${this.baseUrl}/users`);
+  }
+  getDetails(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/unknown`).pipe(
+      switchMap((val) => this.getUser().pipe(
+        map(data => [val, data])
+      )
+      )
+    );
+  }
+  //-----------------fetch---------------------------------------------------
+   getDetails(){
+    this.ds.getDetails().subscribe(data => {
+      console.log(data[0].data, data[1].data);
+    })
+  }
+  -----------------------------------------------------------------------------
