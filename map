@@ -46,3 +46,21 @@ SwitchMap: get data from two sources
     })
   }
   -----------------------------------------------------------------------------
+  
+  data.service.ts (get records from two api
+  
+  getDetails(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/users/1`).pipe(
+      switchMap((rec1) => {
+        return this.http
+          .get<any>(`${this.baseUrl}/unknown/${rec1.data.id}`)
+          .pipe(
+            map((rec2) => {
+              console.log(rec1.data);
+              return Object.assign(rec1.data, rec2.data);
+            })
+          );
+      })
+    );
+  }
+  ----------------------------------------------------------------------
