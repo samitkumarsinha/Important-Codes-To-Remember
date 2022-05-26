@@ -37,3 +37,29 @@ url<input type="text" formControlName="url">
 <button type="submit" [disabled]="!myform.valid">submit</button>
 </form>
 --------------------------------
+conditional validator
+pword: ['', [Validators.required, this.ValidateUrl1]],
+
+ValidateUrl1(control: AbstractControl) {
+    if (control.value === '0') {
+      return { invalidpwd: true };
+    }
+    if (control.value === 'samit') {
+      return { invalidname: true };
+    }
+    return null;
+  }
+  
+ ----------------------
+pword<input type="text" formControlName="pword">
+<div *ngIf="myformc.pword.invalid && (myformc.pword.dirty || myformc.pword.touched)">
+  <div *ngIf="myformc.pword.errors?.['invalidpwd']">
+    0 not allowed
+  </div>
+  <div *ngIf="myformc.pword.errors?.['required']">
+    pw is required.
+  </div>
+  <div *ngIf="myformc.pword.errors?.['invalidname']">
+    pw name invalid.
+  </div>
+</div>
