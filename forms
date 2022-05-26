@@ -1,8 +1,19 @@
+import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
+
+ myform: any;
   constructor(private fb: FormBuilder) {
    this.myform = this.fb.group({
     uname: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
-    pword: ['',Validators.required]
+    pword: ['',Validators.required],
+    url: ['',[Validators.required, this.ValidateUrl]]
    })
+  }
+  ValidateUrl(control: AbstractControl) {
+    if (!control.value.startsWith('https') || !control.value.includes('.io')) {
+      return { invalidUrl: true };
+    }
+    return null;
   }
   get myformc(){
     return this.myform.controls;
@@ -19,6 +30,10 @@ uname<input type="text" formControlName="uname">
   </div>
 </div>
 pword<input type="text" formControlName="pword">
+url<input type="text" formControlName="url">
+<div *ngIf="myformc.url.invalid && (myformc.url.dirty || myformc.url.touched)">
+ enter valid url
+</div>
 <button type="submit" [disabled]="!myform.valid">submit</button>
 </form>
 --------------------------------
