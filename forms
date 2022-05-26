@@ -1,0 +1,24 @@
+  constructor(private fb: FormBuilder) {
+   this.myform = this.fb.group({
+    uname: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+    pword: ['',Validators.required]
+   })
+  }
+  get myformc(){
+    return this.myform.controls;
+  }
+  -----------------------
+  <form [formGroup]="myform" (ngSubmit)="sendval(myform.value)">
+uname<input type="text" formControlName="uname">
+<div *ngIf="myformc.uname.invalid && (myformc.uname.dirty || myformc.uname.touched)">
+  <div *ngIf="myformc.uname.errors?.['required']">
+    Name is required.
+  </div>
+  <div *ngIf="myformc.uname.errors?.['minlength']">
+    Name must be at least 5 characters long.
+  </div>
+</div>
+pword<input type="text" formControlName="pword">
+<button type="submit" [disabled]="!myform.valid">submit</button>
+</form>
+--------------------------------
