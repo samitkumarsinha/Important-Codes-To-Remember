@@ -70,3 +70,7 @@ select a text by class
     this.svg.select('.txt').transition().duration(2000).attr('rotate',360);
     this.svg.select('.txt').attr('rotate','0');
   }
+//-------------------random
+ move(){
+    this.svg.select('.txt').transition().duration(2000).attr('y',Math.random()*500).attr('x',Math.random()*500);
+  }
