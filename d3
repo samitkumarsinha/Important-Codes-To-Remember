@@ -33,7 +33,10 @@ svg: any;
 
   }
 move(){
-    this.svg.transition().delay(500).duration(1000).attr('width','2000');
+    this.svg.transition().delay(500).duration(1000).attr('width','2000'); //div transition
+  }
+    move(){
+    this.svg.selectAll('text').transition().delay(500).duration(10000).attr('x','500'); // text transition
   }
   //------------------------------
   
