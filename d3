@@ -53,4 +53,15 @@ select a text by class
     move(){
     this.svg.select('.txt').transition().delay(500).duration(10000).attr('x','500');
   }
-  //-------------------------------
+  //------------------------------- continous transition
+  <button (click)="starttrans()">click</button>
+
+  starttrans(){
+    setInterval(()=>{
+      this.move()
+    },1000)
+  }
+  move(){
+    this.svg.select('.txt').transition().duration(1000).attr('x','400');
+    this.svg.select('.txt').attr('x','250');
+  }
