@@ -1,0 +1,41 @@
+
+//transition in d3
+svg: any;
+  container: any;
+  counter = 5;
+  
+  ngOnInit(): void {
+    this.draw();
+  }
+  draw(){
+
+    this.svg = d3
+      .select('#chart')
+      .append('svg')
+      .attr('width', 500)
+      .attr('height', 500)
+      .style('background-color', 'burlywood');
+
+
+    this.svg
+      .append('ellipse')
+      .attr('cx', 250)
+      .attr('cy', 250)
+      .attr('rx', 100)
+      .attr('ry', 80)
+      .append('text');
+    this.svg
+      .append('text')
+      .attr('x', this.counter)
+      .attr('y', 250)
+      .style('stroke', '#ffffff')
+      .text('hello');
+
+  }
+move(){
+    this.svg.transition().delay(500).duration(1000).attr('width','2000');
+  }
+  //------------------------------
+  
+<div id="chart"></div>
+<button (click)="move()">click</button>
