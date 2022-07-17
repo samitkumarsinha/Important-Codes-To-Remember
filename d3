@@ -65,3 +65,8 @@ select a text by class
     this.svg.select('.txt').transition().duration(1000).attr('x','400');
     this.svg.select('.txt').attr('x','250');
   }
+//---------------------------------rotate
+  move(){
+    this.svg.select('.txt').transition().duration(2000).attr('rotate',360);
+    this.svg.select('.txt').attr('rotate','0');
+  }
