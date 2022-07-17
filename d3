@@ -42,3 +42,15 @@ move(){
   
 <div id="chart"></div>
 <button (click)="move()">click</button>
+//------------------------------------
+select a text by class
+
+  this.svg
+      .append('text')
+      .attr('class','txt')
+      .attr('x', this.counter)
+  //------------------------------
+    move(){
+    this.svg.select('.txt').transition().delay(500).duration(10000).attr('x','500');
+  }
+  //-------------------------------
