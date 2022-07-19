@@ -1,0 +1,9 @@
+internal bookmark
+  <p (click)="scrollToElement(target)">See Benchmark Riskometer</p>
+<div #target>&nbsp;</div>
+-------------
+  scrollToElement($element): void {
+    console.log($element);
+    $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
+-------------
