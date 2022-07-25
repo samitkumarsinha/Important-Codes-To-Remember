@@ -74,3 +74,44 @@ select a text by class
  move(){
     this.svg.select('.txt').transition().duration(2000).attr('y',Math.random()*500).attr('x',Math.random()*500);
   }
+//-------------------------bar chart 
+import { Component, OnInit } from '@angular/core';
+import * as d3 from 'd3';
+@Component({
+  selector: 'app-chart1',
+  templateUrl: './chart1.component.html',
+  styleUrls: ['./chart1.component.scss']
+})
+export class Chart1Component implements OnInit {
+  svg: any;
+  mygroup: any;
+  constructor() { }
+
+  ngOnInit(): void {
+    this.svg = d3.select('body').append('svg');
+    this.svg
+      .attr('width', 400)
+      .attr('height', 400)
+      .style('background-color', 'white');
+    this.draw();
+  }
+
+  draw(){
+    const dataset = [10, 5, 12, 15, 90];
+    this.svg
+    .selectAll("div")
+    .data(dataset)  
+    .enter()
+    .append("rect")
+    .attr("class", "bar")
+    .attr('x', 20)
+    .attr('y', (d: any, i: any)=> i*50)
+    .style('height', 20)
+    .style("width", (d: any) =>{
+        let barHeight = d * 5;
+        console.log(barHeight)
+        return barHeight + "px";
+    });
+  }
+}
+//----------------------------------------------------
