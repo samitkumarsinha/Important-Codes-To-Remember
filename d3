@@ -115,3 +115,53 @@ export class Chart1Component implements OnInit {
   }
 }
 //----------------------------------------------------
+draw pie
+
+export class TestComponent implements OnInit {
+  svg: any;
+  dataset = [
+    5, 10, 19, 21, 25
+  ];
+  constructor() {}
+
+  ngOnInit(): void {
+    this.svg = d3.select('#chart').append('svg');
+    this.svg
+      .attr('width', 400)
+      .attr('height', 400)
+      .style('background-color', 'wheat');
+
+    this.draw();
+  }
+  draw() {
+    this.svg
+      .style('stroke', 'white')
+      .style('stroke-width', 0.5)
+
+    let pie = d3.pie();
+    let arc = d3.arc().innerRadius(0).outerRadius(200);
+
+    var arcs = this.svg
+      .selectAll('arc')
+      .data(pie(this.dataset))
+      .enter()
+      .append('g')
+      .attr('class', 'arc');
+    var color = d3.scaleOrdinal([
+      '#4daf4a',
+      '#377eb8',
+      '#ff7f00',
+      '#984ea3',
+      '#e41a1c',
+    ]);
+    //Draw arc paths
+    arcs
+      .append('path')
+      .attr('fill', function (d: any, i: any) {
+        return color(i);
+      })
+      .attr('d', arc)
+      .attr('transform','translate(200,200)');
+  }
+}
+---------------------------------------------------------
