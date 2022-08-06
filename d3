@@ -170,27 +170,33 @@ ticks
 export class BarComponent implements OnInit {
   svg: any;
   data = [50, 8, 20, 4, 3];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.svg = d3.select('.bar').append('svg');
     this.svg
-      .attr('width',400)
-      .attr('height',400)
+      .attr('width', 400)
+      .attr('height', 400)
       .style('background-color', 'wheat');
-      this.draw();
+    this.draw();
   }
-  draw(){
-  
-    let x = d3.scaleLinear()
-      .domain([d3.min(this.data) as number, d3.max(this.data) as number])         // This is what is written on the Axis: from 0 to 100
+  draw() {
+    let x = d3
+      .scaleLinear()
+      .domain([d3.min(this.data) as number, d3.max(this.data) as number]) // This is what is written on the Axis: from 0 to 100
       .range([0, 400]);
+    let y = d3
+      .scaleLinear()
+      .domain([d3.min(this.data) as number, d3.max(this.data) as number]) // This is what is written on the Axis: from 0 to 100
+      .range([400, 0]);
 
-      this.svg
+    this.svg
       .append('g')
-      .attr('transform','translate(0,400)')
-      .call(d3.axisTop(x).scale(x).ticks(5))
+      .attr('transform', 'translate(0,400)')
+      .call(d3.axisTop(x).ticks(5));
+
+    this.svg
+      .append('g')
+      .call(d3.axisRight(y).ticks(5));
   }
-
 }
-
