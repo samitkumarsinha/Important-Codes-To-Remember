@@ -97,5 +97,25 @@ export class ChartsComponent implements OnInit {
       .attr('x', (d:any, i: any) => xscale(i))
       .attr('y', (d:any, i: any) => yscale(d.count))
       .attr('fill', (d:any, i: any) => colorScale(d.count))
+
+      var leftAxis = d3.axisLeft(yscale);
+      this.svg
+      .append('g').attr('id', 'left-axis')
+      .call(leftAxis);
+
+      var skillScale = d3.scaleBand();
+      var skillDomain = this.data.map((skill: any) =>{
+        console.log(skill.name)
+        return skill.name
+      });
+      skillScale.range([0, 800]);
+      skillScale.domain(skillDomain);
+
+      var bottomAxis = d3.axisBottom(skillScale);
+      this.svg
+      .append('g')
+      .attr('id', 'bottom-axis') //not working
+      .call(bottomAxis)
+      .attr('transform', 'translate(0,'+600+')');
   }
-  -----------------------------------
+  ----------------------------
