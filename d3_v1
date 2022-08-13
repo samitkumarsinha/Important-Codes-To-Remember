@@ -185,7 +185,7 @@ export class ChartsComponent implements OnInit {
   ----------------------------
   line chart
    let startx=0, starty=0;
-    let endx=startx+20, endy=-(starty+20);
+    let endx=startx+20, endy=-(Math.random()*600);
     this.svg
 
     for(let c=0;c<=30;c++){
