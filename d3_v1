@@ -46,4 +46,56 @@ export class BarComponent implements OnInit {
 
   }
 }
-----------------------------------------------
+----------------------------------------------bar chart
+export class ChartsComponent implements OnInit {
+  svg: any;
+  data: any;
+  constructor() { }
+
+  ngOnInit(): void {
+    this.svg = d3.select('#chart');
+    this.svg
+      .attr('width', 800)
+      .attr('height', 600)
+      .style('background-color', '#FFFFFF')
+
+    d3.json('assets/data.json').then(data => {
+      this.data = data;
+      this.draw();
+    })
+
+  }
+  draw(){
+    let yscale = d3.scaleLinear();
+    yscale.range([600, 0]);
+    let ymin: any = d3.min(this.data, (d: any,i: any)=> d.count);
+    let ymax: any = d3.max(this.data, (d: any,i: any)=> d.count);
+    console.log(ymin, ymax);
+    yscale.domain([ymin-1, ymax]);
+
+    let xscale = d3.scaleLinear();
+    xscale.range([0, 800]);
+    xscale.domain([0, this.data.length]);
+
+    let ydomain: any = d3.extent(this.data, (d: any, i: any)=> d.count);
+    let colorScale = d3.scaleLinear();
+    colorScale.domain(ydomain);
+    colorScale.range(['#00cc00' as any, '#0000FF' as any]);
+
+    this.svg
+      .selectAll('rect')
+      .data(this.data)
+      .enter()
+      .append('rect')
+
+      .attr('height', (d: any, i: any) => {
+        return 600-yscale(d.count)
+      })
+      .attr('width', 800/this.data.length)
+      .style('stroke','white')
+      .style('stroke-width','1px')
+      .attr('x', (d:any, i: any) => xscale(i))
+      .attr('y', (d:any, i: any) => yscale(d.count))
+      .attr('fill', (d:any, i: any) => colorScale(d.count))
+  }
+  -----------------------------------
