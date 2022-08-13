@@ -119,3 +119,66 @@ export class ChartsComponent implements OnInit {
       .attr('transform', 'translate(0,'+600+')');
   }
   ----------------------------
+  axis
+  
+  export class Test1Component implements OnInit {
+  svg: any;
+  data = [
+    {date:"1-May-12",close:"58.13"},
+    {date:"30-Apr-12",close:"53.98"},
+    {date:"27-Apr-12",close:"67.00"},
+    {date:"26-Apr-12",close:"89.70"},
+    {date:"25-Apr-12",close:"99.00"}
+    ];
+  constructor() { }
+
+  ngOnInit(): void {
+    this.svg = d3.select('body').append('svg');
+    this.svg
+      .attr('height', 600)
+      .attr('width', 600)
+
+      // .style('background-color','wheat')
+      .attr('stroke','red')
+      .attr('stroke-width',1)
+      .attr('fill','none')
+      .append('circle')
+      .attr('cx',300)
+      .attr('cy',300)
+      .attr('r',200)
+    this.svg
+      .append('rect')
+      .attr('x',0)
+      .attr('y',0)
+      .attr('width',300)
+      .attr('height',300)
+    this.svg
+      .append('line')
+      .attr('x1',0)
+      .attr('y1',0)
+      .attr('x2',300)
+      .attr('y2',300)
+    this.svg
+      .append('polyline')
+      .attr('points','0,600,300,0,600,600')
+    this.svg
+      .append('polygon')
+      .attr('points','0,0,300,600,600,0')
+      let x = d3.scaleLinear().range([0, 600]).domain([0,600]);
+      let y = d3.scaleLinear().range([600, 0]).domain([0,600]);
+
+      let xAxis = d3.axisTop(x).scale(x).ticks(5);
+      let yAxis = d3.axisRight(y).ticks(5);
+
+      this.svg
+      .append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + 600 + ")")
+      .call(xAxis);
+      // Add the Y Axis
+      this.svg
+      .append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(0," + 0 + ")")
+      .call(yAxis);
+  }
