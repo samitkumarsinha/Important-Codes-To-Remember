@@ -1,0 +1,40 @@
+axis
+-------
+export class Test2Component implements OnInit {
+  svg:any;
+  constructor() { }
+
+  ngOnInit(): void {
+    this.svg = d3.select('#chart').append('svg');
+    this.svg
+      .attr('width', 400)
+      .attr('height', 400)
+      .style('margin-left',20)
+      .style('overflow','visible')
+      .style('background-color','white');
+
+
+    let xscale = d3.scaleLinear().range([0,400]).domain([0,400]);
+    let xaxis = d3.axisBottom(xscale).ticks(5);
+    let yscale = d3.scaleLinear().range([400,0]).domain([0,400]);
+    let yaxis = d3.axisLeft(yscale).ticks(5);
+    this.svg
+      .append('g')
+      .attr('transform','translate(0,400)')
+      .call(xaxis);
+
+    this.svg
+      .append('g')
+      .call(yaxis);
+
+    this.svg
+      .append('g')
+      .attr('transform','translate(0,400)')
+      .append('line')
+      .attr('stroke','black')
+      .attr('x1',0)
+      .attr('y1',0)
+      .attr('x2',200)
+      .attr('y2',-200)
+
+  }
