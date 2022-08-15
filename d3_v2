@@ -367,7 +367,9 @@ export class Test2Component implements OnInit {
             '<br/>' +
             'y: ' +
             d.target.__data__.close
-        );
+        )
+        .style("left", d.x + "px")
+        .style("top", d.y + "px")
     };
   }
   ------------------------------------------
