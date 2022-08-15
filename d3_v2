@@ -373,3 +373,36 @@ export class Test2Component implements OnInit {
     };
   }
   ------------------------------------------
+  x axis rotate text label
+  export class BarComponent implements OnInit {
+  svg: any;
+  height = 400;
+  width = 500;
+  data: any[] = [];
+  constructor() {}
+
+  async ngOnInit(): Promise<void> {
+    await d3.json('assets/data.json').then((data: any) => {
+      this.data = data;
+    });
+    this.svg = d3.select('.chart').append('svg');
+    this.svg
+      .attr('width', this.width)
+      .attr('height',this.height)
+      .style('margin','40px')
+      .style('overflow','visible')
+      .style('background-color', 'lightgray');
+    let xscale: any = d3.scaleBand().domain(this.data.map((d: any) => d.name)).range([0, this.width]);
+    let xaxis = d3.axisBottom(xscale).ticks(30);
+
+    this.svg
+      .append('g')
+      .attr('transform','translate(0, ' + this.height + ')')
+      .call(xaxis)
+      .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", ".15em")
+      .attr("transform", "rotate(-65)");
+  }
+  ----------------------------------------------
