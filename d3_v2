@@ -1,5 +1,33 @@
 axis
 -------
+export class Test3Component implements OnInit {
+  svg: any;
+  constructor() { }
+
+  ngOnInit(): void {
+    this.svg = d3.select("#chart").append("svg");
+    this.svg
+      .attr('width', 500)
+      .attr('height', 500)
+      .style('background-color','wheat')
+      .style('overflow','visible')
+      .style('margin','0 0 0 40px')
+
+    let scalex = d3.scaleLinear().range([0,500]).domain([0,500])
+    let scaley = d3.scaleLinear().range([500,0]).domain([0,500])
+
+    let xaxis = d3.axisBottom(scalex).ticks(5);
+    let yaxis = d3.axisLeft(scaley).ticks(5);
+
+    this.svg
+      .append('g')
+      .attr('transform','translate(0,500)')
+      .call(xaxis)
+    this.svg
+      .append('g')
+      .call(yaxis)
+  }
+ ----------------
 export class Test2Component implements OnInit {
   svg:any;
   constructor() { }
