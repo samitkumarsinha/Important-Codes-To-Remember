@@ -94,7 +94,7 @@ export class Test2Component implements OnInit {
 
     this.svg.append('g').call(yaxis);
     -----------------------------
-    set axis at origin
+    set axis at origin final
     export class Test3Component implements OnInit {
   svg: any;
   dataset = [
@@ -123,21 +123,23 @@ export class Test2Component implements OnInit {
     this.svg
       .attr('width', width)
       .attr('height', height)
-      .style('overflow', 'visible');
+      .style('margin','40px')
+      .style('overflow', 'visible')
+      .append('g')
+      .attr('transform', 'translate(' + 104 + ',' + 98 + ')');
+
     let xScale = d3.scaleLinear().domain([0, 100]).range([0, width]);
     let yScale = d3.scaleLinear().domain([0, 200]).range([height, 0]);
     let xaxis = d3.axisBottom(xScale);
     let yaxis = d3.axisLeft(yScale);
-
-    let g = this.svg
+    this.svg
       .append('g')
-      .attr('transform', 'translate(' + 104 + ',' + 98 + ')');
-
-    g.append('g')
       .attr('transform', 'translate(0,' + height + ')')
       .call(xaxis);
 
-    g.append('g').call(yaxis);
+    this.svg.
+      append('g')
+      .call(yaxis);
 
     let line = d3
       .line()
@@ -149,10 +151,8 @@ export class Test2Component implements OnInit {
       .append('path')
       .datum(this.dataset)
       .attr('class', 'line')
-      .attr('transform', 'translate(' + 100 + ',' + 100 + ')')
       .attr('d', line)
       .style('fill', 'none')
-      .style('stroke', '#CC0000')
-      .style('stroke-width', '2');
+      .style('stroke', '#CC0000');
   }
-  ---------------------------
+  -------------------------------------
