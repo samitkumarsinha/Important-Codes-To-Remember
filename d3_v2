@@ -394,6 +394,9 @@ export class Test2Component implements OnInit {
       .style('background-color', 'lightgray');
     let xscale: any = d3.scaleBand().domain(this.data.map((d: any) => d.name)).range([0, this.width]);
     let xaxis = d3.axisBottom(xscale).ticks(30);// remove ticks
+    
+    let yscale = d3.scaleLinear().domain(<[any, any]>d3.extent(this.data, (d: any)=> d.count)).range([this.height, 0]).nice();
+    let yaxis = d3.axisLeft(yscale);
 
     this.svg
       .append('g')
@@ -404,5 +407,9 @@ export class Test2Component implements OnInit {
       .attr("dx", "-.8em")
       .attr("dy", ".15em")
       .attr("transform", "rotate(-65)");
+      
+     this.svg
+      .append('g')
+      .call(yaxis)
   }
   ----------------------------------------------
