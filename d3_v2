@@ -126,7 +126,7 @@ export class Test2Component implements OnInit {
       .style('margin','40px')
       .style('overflow', 'visible')
       .append('g')
-      .attr('transform', 'translate(' + 104 + ',' + 98 + ')');
+      .attr('transform', 'translate(' + 104 + ',' + 98 + ')');// this line not required
 
     let xScale = d3.scaleLinear().domain([0, 100]).range([0, width]);
     let yScale = d3.scaleLinear().domain([0, 200]).range([height, 0]);
