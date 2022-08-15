@@ -149,7 +149,7 @@ export class Test2Component implements OnInit {
 
     this.svg
       .append('path')
-      .datum(this.dataset)
+      .datum(this.dataset) //  .data([this.dataset])
       .attr('class', 'line')
       .attr('d', line)
       .style('fill', 'none')
