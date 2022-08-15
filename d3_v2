@@ -393,7 +393,7 @@ export class Test2Component implements OnInit {
       .style('overflow','visible')
       .style('background-color', 'lightgray');
     let xscale: any = d3.scaleBand().domain(this.data.map((d: any) => d.name)).range([0, this.width]);
-    let xaxis = d3.axisBottom(xscale).ticks(30);
+    let xaxis = d3.axisBottom(xscale).ticks(30);// remove ticks
 
     this.svg
       .append('g')
