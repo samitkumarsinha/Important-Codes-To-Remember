@@ -126,3 +126,8 @@ export class BarComponent implements OnInit {
   }
 }
 --------------------------------------
+format tick and set tick count
+let yscale = d3.scaleLinear().domain([0,35]).rangeRound([this.height, 0]).nice();
+let yaxis = d3.axisLeft(yscale).tickSize(-500).ticks(35).tickFormat(d3.format('d'));
+---------------------------------------
+    
