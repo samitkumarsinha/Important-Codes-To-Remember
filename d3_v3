@@ -133,3 +133,103 @@ let yaxis = d3.axisLeft(yscale).tickSize(-500).ticks(35).tickFormat(d3.format('d
  left padding in chart
      const xscale: any = d3.scaleBand().domain(this.data.map((d: any) => d.name)).range([0, parseInt(this.config.width)]).padding(1);
 -----------------------------------------
+double line chart
+
+export class Test5Component implements OnInit {
+  svg: any;
+  data = [
+    { name: 'Ram', email: 'ram@gmail.com', age: 20 },
+    { name: 'Shyam', email: 'shyam23@gmail.com', age: 10 },
+    { name: 'John', email: 'john@gmail.com', age: 30 },
+    { name: 'Bob', email: 'bob32@gmail.com', age: 15 },
+    { name: 'Mohan', email: 'mohan@gmail.com', age: 50 },
+  ];
+
+  data1 = [
+    { name: 'Ram', email: 'ram@gmail.com', age: 10 },
+    { name: 'Shyam', email: 'shyam23@gmail.com', age: 50 },
+    { name: 'John', email: 'john@gmail.com', age: 15 },
+    { name: 'Bob', email: 'bob32@gmail.com', age: 30 },
+    { name: 'Mohan', email: 'mohan@gmail.com', age: 20 },
+  ];
+  config = {
+    height: '500',
+    width: '600',
+    margin: '60px',
+    backgroundColor: 'wheat',
+  };
+  constructor() {}
+
+  ngOnInit(): void {
+    this.svg = d3.select('#chart').append('svg');
+    this.svg
+      .attr('width', this.config.width)
+      .attr('height', this.config.height)
+      .style('background-color', this.config.backgroundColor)
+      .style('overflow','visible')
+      .style('margin', this.config.margin);
+
+    const xscale: any = d3.scalePoint().domain(this.data.map((d: any) => d.name)).range([0, parseInt(this.config.width)]);
+    const xaxis = d3.axisBottom(xscale).tickSize(-this.config.height);
+
+    const yscale = d3.scaleLinear().domain([0, d3.max(this.data, (d: any) => d.age)]).range([parseInt(this.config.height), 0]);
+    const yscale1 = d3.scaleLinear().domain([0, d3.max(this.data, (d: any) => d.age)]).range([parseInt(this.config.height), 0]);
+
+    const yaxis = d3.axisLeft(yscale).tickSize(-this.config.width);
+
+    this.svg
+      .append('g')
+      .attr('transform',`translate(0,${this.config.height})`)
+      .call(xaxis);
+
+    this.svg
+      .append('g')
+      .call(yaxis);
+
+    this.svg
+      .append('g')
+      .append("text")
+      .attr("text-anchor", "end")
+      .attr("x", this.config.width)
+      .attr("y",  540)
+      .text("X axis title");
+
+    this.svg
+      .append('g')
+      .append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("x", 0)
+      .attr("y",  -40)
+      .text("Y axis title");
+
+
+
+    const ageline = d3.line()
+      .x((d: any) => xscale(d.name))
+      .y((d: any) => yscale(d.age))
+      .curve(d3.curveMonotoneX);
+
+    const ageline1 = d3.line()
+      .x((d: any) => xscale(d.name))
+      .y((d: any) => yscale1(d.age))
+      .curve(d3.curveMonotoneX);
+
+    this.svg
+      .append('g')
+      .append('path')
+      .data([this.data])
+      .attr('d', ageline)
+      .style('fill', 'none')
+      .style('stroke', 'green');
+
+    this.svg
+      .append('g')
+      .append('path')
+      .data([this.data1])
+      .attr('d', ageline1)
+      .style('fill', 'none')
+      .style('stroke', 'red');
+  }
+}
+----------------------------------
