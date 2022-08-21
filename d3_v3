@@ -133,8 +133,7 @@ let yaxis = d3.axisLeft(yscale).tickSize(-500).ticks(35).tickFormat(d3.format('d
  left padding in chart
      const xscale: any = d3.scaleBand().domain(this.data.map((d: any) => d.name)).range([0, parseInt(this.config.width)]).padding(1);
 -----------------------------------------
-double line chart
-
+double line chart with legend
 export class Test5Component implements OnInit {
   svg: any;
   data = [
@@ -230,6 +229,11 @@ export class Test5Component implements OnInit {
       .attr('d', ageline1)
       .style('fill', 'none')
       .style('stroke', 'red');
+
+      this.svg.append("circle").attr("cx",200).attr("cy",-40).attr("r", 6).style("fill", "red")
+      this.svg.append("circle").attr("cx",200).attr("cy",-20).attr("r", 6).style("fill", "green")
+      this.svg.append("text").attr("x", 220).attr("y", -40).text("Age 1").style("font-size", "15px").attr("alignment-baseline","middle")
+      this.svg.append("text").attr("x", 220).attr("y", -20).text("Age 2").style("font-size", "15px").attr("alignment-baseline","middle")
   }
 }
-----------------------------------
+------------------------------------
