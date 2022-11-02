@@ -95,4 +95,11 @@ export class DataService {
   }
 }
 
+or using curly bracket and return statement
+---------------------------------------------------------------------------------------------------
+  getData(): Observable<any>{
+    return this.http.get<any>('https://reqres.in/api/users').pipe(map(item =>{
+      return item.data as User[]
+  }))
+  }
 --------------------------------------------------------------------------------------------------
