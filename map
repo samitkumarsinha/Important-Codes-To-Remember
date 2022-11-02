@@ -63,4 +63,36 @@ SwitchMap: get data from two sources
       })
     );
   }
-  ----------------------------------------------------------------------
+  -------------------------------------------------------------------------------------------------------use this for map fields with interface
+ map final code
+ interface
+ user.ts
+ -----------------------------------------------------
+ export interface User {
+  id: number,
+  email: string,
+  first_name: string,
+  last_name: string,
+  avatar: string
+}
+---------------------------------------------------------
+dataservice
+data.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
+import { User } from './user';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs';
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+  constructor(private http: HttpClient) { }
+  getData(): Observable<any>{
+    return this.http.get<any>('https://reqres.in/api/users').pipe(map(item =>
+      item.data as User[]
+    ))
+  }
+}
+
+--------------------------------------------------------------------------------------------------
