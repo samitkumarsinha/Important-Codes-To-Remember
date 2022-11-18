@@ -1,0 +1,236 @@
+remove duplicate
+ removeDuplicate(){
+    let str = "i am a manga"
+    let arr = str.split('')
+    let str1 = new Set(arr)
+    let str2 = Array.from(str1).join('')
+    console.log(str2)
+  }
+
+
+<script>
+    let arr =
+        [{ name: 'ABC-EFR', age: 21, gender: 'Male' },
+        { name: 'ABC-EFM', age: 22, gender: 'Female' },
+        { name: 'ABC-MOP', age: 23, gender: 'Male' },
+        { name: 'ABC-LPP', age: 24, gender: 'Female' },
+        { name: 'ABC-EFR', age: 21, gender: 'Male' },
+        { name: 'ABC-EFM', age: 27, gender: 'Female' },
+        { name: 'ABC-MOP', age: 24, gender: 'Male' }]
+
+   
+
+    // keys = ['name', 'age'],
+    // filtered = arr.filter(
+    //     (s => o => 
+    //         (k => !s.has(k) && s.add(k))
+    //         (keys.map(k => o[k]).join('|'))
+    //     )
+    //     (new Set)
+    // );
+    // console.log(filtered);
+
+    const arr1 = [1,2,1,3,6,9,9]
+
+    console.log(...(new Set(arr1))) //array.from(new set(arr1))
+
+    const filtered = arr.filter((tag, index, array) => array.findIndex(t => t.name == tag.name && t.age == tag.age) == index);
+    console.log(filtered);
+
+    var uniqueResultOne = arr.filter((obj) => {
+        return !filtered.some((obj2) => {
+            return obj === obj2;
+        });
+    });
+    console.log(uniqueResultOne);
+
+
+    //find gender = male
+    res = arr.filter(item => {
+        return item.gender === 'Male'
+    })
+    console.log(res)
+    //Reverse the number 783923
+
+    let num = 783923;
+    res = String(num).split('').reverse().join('')
+    console.log(res)
+
+    //output of
+
+    console.log(2 + 3) //5
+    console.log(2 + '3') //23
+    console.log(2 - 3) // -1
+    console.log(2 - 'e') // NaN
+
+    //output of
+
+    let obj = {
+        "name": "ABC",
+        "age": 22
+    }
+
+    let b = obj;
+
+    b.age = 25;
+    b.name = 'v'
+
+    console.log(b, obj); //both 25, v
+    /*
+        hoisting in javascript :default behavior of moving all the 
+        declarations at the top of the scope before code execution
+
+        Explain let const var
+
+    
+        var declarations are globally scoped or function scoped 
+        while let and const are block scoped. 
+        var variables can be updated and re-declared within its scope; 
+        let variables can be updated but not re-declared; 
+        const variables can neither be updated nor re-declared. 
+        They are all hoisted to the top of their scope
+    
+        Explain call apply bind
+
+    
+        The call, bind and apply methods can be used
+         to set the this keyword independent of how a function is called. 
+         The bind method creates a copy of the function 
+         and sets the this keyword, while the call and apply 
+         methods sets the this keyword and calls the function immediately.
+    
+        Explain and difference between map filter
+
+    
+        Map takes all objects in a list and allows you
+         to apply a function to it whereas Filter 
+         takes all objects in a list and runs that 
+         through a function to create a new list 
+         with all objects that return True in that function
+    
+
+        What is closure
+    
+        if inner function access the variables of outer function then only it is called closure
+
+    example
+
+    function init() {
+        var name = 'Mozilla'; // name is a local variable created by init
+        function displayName() { // displayName() is the inner function, a closure
+            alert(name); // use variable declared in the parent function
+        }
+        displayName();
+    }
+    init(); // Mozilla
+
+    function makeFunc() {
+        var name = 'Mozilla';
+        function displayName() {
+            alert(name);
+        }
+        return displayName;
+    }
+
+    var myFunc = makeFunc();
+    myFunc(); // Mozilla
+
+    What is nested functions
+    
+        Functions within another function are called “Nested function”. 
+        A function can have one or more inner functions. 
+        Child function can access variables and parameters of the Parent 
+        function. However, Parent function cannot access 
+        variables of inside child functions.
+    
+
+    Explain some and every
+    
+        some() method in JavaScript is used to check 
+        whether at least one of the elements of the array 
+        satisfies the given condition or not. 
+        The only difference is that the some() method will 
+        return true if any predicate is true while 
+        every() method will return true if all predicate are true.
+    
+
+    difference between behaviorsubject and subject
+
+    
+        A BehaviorSubject holds one value. 
+        When it is subscribed it emits the value immediately. 
+        A Subject doesn't hold a value.
+
+    Lazy loading
+
+        Lazy loading is a routing technique in which the JavaScript 
+        components load in the browser only when their corresponding 
+        route is activated. The main aim of lazy loading is to improve 
+        the performance of the Angular app by restricting the unnecessary 
+        loading of components
+    
+        const routes: Routes = [
+            {
+                path: 'items',
+                loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+            }
+        ];
+    preloading
+    
+        (loading all modules in background)
+        Preloading means loading data before some event, 
+        either synchronously or asynchronously. 
+        Angular documentation describes two types of preloading mechanisms. 
+        Preloading modules — Loading modules asynchronously in the background 
+        is called preloading modules. This technique should be used with lazy loading.
+
+        first use loadchildren for lazy loading
+        const routes: Routes = [
+            {path: "admin", loadChildren:'./admin/admin.module#AdminModule'},
+        ];
+
+        after that enable preload
+        RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules}) 
+
+
+    
+
+    Box model in css
+    
+        a box that wraps around every HTML element. 
+        It consists of: margins, borders, padding, and the actual content.
+        
+    
+    difference between display: inline and display: block and display: inline-block
+
+   
+        display:inline: doesnt allow width and height on element, just border
+
+        display: inline-block allows to set a width and height on the element.
+        display: inline-block does not add a line-break after the element, 
+        so the element can sit next to other elements.
+
+        display:block: add line break
+  
+
+        If your box has a width of '100%' and also has margin, 
+        border and padding, they will affect (increase) the width 
+        occupied by the object. 
+        So, if your textarea needs to be 100% wide, 
+        assign values to width, margin-left/right, border-left/right 
+        and padding-left/right in such a way that their sum equals 100%
+
+        if an element has a specified width, 
+        the padding added to that element will be 
+        added to the total width of the element.
+
+    */
+
+    
+</script>
+<!-- 
+    If we set margin top of first <p> to 20px and margin bottom of second <p> to 20px then what is the gap between two.
+    No Gap between two
+-->
+<p style="display:box; border: thin solid black;margin-top: 80px;">a</p>
+<p style="display:box; border: thin solid black; margin-bottom: 80px;">b</p>
