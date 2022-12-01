@@ -15,7 +15,7 @@
  //---------------------subscribe another way -------------------------------
   getJoin() {
     this.ds.getJoin().subscribe({
-      next: (v) => this.movies = v,
+      next: (v) => console.log(v),
       error: (e) => console.error(e),
       complete: () => console.info('complete')
     });
