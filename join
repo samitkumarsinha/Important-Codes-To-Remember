@@ -12,6 +12,14 @@
       let res = json2.map((x: { email: any; }) => Object.assign(x, json1.find((y: { email: any; }) => y.email == x.email)));
 
       console.log(res);
+ //---------------------subscribe another way -------------------------------
+  getJoin() {
+    this.ds.getJoin().subscribe({
+      next: (v) => this.movies = v,
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    });
+  }
  //------------------right join-------------------
   let result = json1.map((x: any) => Object.assign(x, json2.find((y: any) => y.email == x.email)));
 
