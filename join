@@ -51,7 +51,7 @@
     );
   }
   ------------------------------------------------------------------------------------------------
- combine latest forkjoin with 3 sources
+ combine latest forkjoin with 3 sources // we can also use forkjoin
   getData() {
     return combineLatest([
       this.getMovies(),
