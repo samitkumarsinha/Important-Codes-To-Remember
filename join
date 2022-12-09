@@ -1,4 +1,9 @@
- //------------------forkjoin (left join)------------
+convert to observable
+ let list = from([Movie_Dir_List])
+ or
+  let list = of(Movie_Dir_List)
+  
+//------------------forkjoin (left join)------------
  profile(): Observable<any>{
     let profile =this.http.get<any>(`${this.url}/api/profile`)
     let user = this.http.get<any>(`${this.url}/api/list`)
