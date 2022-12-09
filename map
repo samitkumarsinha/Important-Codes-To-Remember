@@ -103,3 +103,17 @@ or using curly bracket and return statement
   }))
   }
 --------------------------------------------------------------------------------------------------
+inner join with combinelatest
+ getData() {
+    return combineLatest([this.getMovies(), this.getMovieDirs()]).pipe(
+      map(([movies, dirs]) =>
+        movies.map((item) => {
+          return {
+            ...item,
+            dir_id: dirs.find((a) => a.mov_id === item.mov_id),
+          };
+        })
+      )
+    );
+  }
+  ---------------------------------------------------------------------------------------------------
