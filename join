@@ -37,4 +37,18 @@
 //-----------------------exist in 1 not in 2---------------
   let result = json2.filter((o1:any) => !json1.some((o2:any) => o1.email === o2.email));
 
+--------------------------inner join with combinelatest------------------------------------
+ getData() {
+    return combineLatest([this.getMovies(), this.getMovieDirs()]).pipe(
+      map(([movies, dirs]) =>
+        movies.map((item) => {
+          return {
+            ...item,
+            dir_id: dirs.find((a) => a.mov_id === item.mov_id),
+          };
+        })
+      )
+    );
+  }
+  ------------------------------------------------------------------------------------------------
  
