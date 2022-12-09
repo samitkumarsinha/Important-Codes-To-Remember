@@ -51,4 +51,27 @@
     );
   }
   ------------------------------------------------------------------------------------------------
- 
+ combine latest forkjoin with 3 sources
+  getData() {
+    return combineLatest([
+      this.getMovies(),
+      this.getMovieDirs(),
+      this.getDir(),
+    ]).pipe(
+      map(([movies, dirs, dirsid]) => {
+        let mov_1 = movies.map((item) => {
+          return {
+            ...item,
+            dir_ids: dirs.find((a) => a.mov_id === item.mov_id),
+          };
+        });
+        return mov_1.map((item: any) => {
+          return{
+            ...item,
+            mov_detail: dirsid.find((a) => a.dir_id === item.dir_ids?.dir_id)
+          }
+        })
+      })
+    );
+  }
+  --------------------------------------------------------------------------------------------
