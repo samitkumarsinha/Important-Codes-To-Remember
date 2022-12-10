@@ -1,0 +1,15 @@
+mouse event
+ngAfterViewInit(): void {
+    fromEvent(document.body, 'click')
+      .pipe(
+        debounceTime(10),
+        map((item: any) => {
+          return { x: item.clientX, y: item.clientY };
+        })
+      )
+      .subscribe((c) => {
+        console.log(c);
+      });
+  }
+  --------------------------------------------
+  
