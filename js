@@ -20,3 +20,8 @@ page scroll progressbar
   });
 </script>
 -------------------------------------------------------------------------
+hostlistener
+ @HostListener ('click', ['$event']) hh(e: MouseEvent){
+    console.log(e.clientX, e.clientY)
+ }
+ ------------------------------------------------------------------------
