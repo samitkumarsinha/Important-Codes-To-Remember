@@ -26,3 +26,11 @@ ngAfterViewInit(): void {
       })
     )
     -----------------------------------------------
+    extract inner observables
+ let list5 = of(1, 2, 3);
+    let list6 = of(1, 2);
+    return list5.pipe(
+      switchMap((item) => {
+        return list6.pipe(map((innerValue) => item * innerValue));
+      })
+    );
