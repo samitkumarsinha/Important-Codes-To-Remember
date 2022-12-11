@@ -12,4 +12,17 @@ ngAfterViewInit(): void {
       });
   }
   --------------------------------------------
-  
+  map two arrays
+   getData() {
+    let bear = [{name: 'aa', age:20}, {name: 'bb', age:20}, {name: 'cc', age:20}, {name: 'dd', age:20}]
+    let lion = [{name: 'ee', age:20}, {name: 'ff', age:20}, {name: 'gg', age:20}]
+    let list3 = of(bear)
+    let list4 = of(lion)
+    return combineLatest([list3, list4]).pipe(
+      map(([bears, lions]) => {
+        return bears.map((tag, index) => {
+          return 'bear called ' + tag.name + ' lion called ' + (lions[index]?.name)
+        })
+      })
+    )
+    -----------------------------------------------
