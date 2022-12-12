@@ -55,7 +55,7 @@ ngAfterViewInit(): void {
       })
     );
     -----------------------------------------------
-    pair with zip
+    pair with zip, shortcut to above
      return zip([bear, lion]).pipe(
       map(item => console.log('lion is ' + item[0].name + ' bear called '+item[1].name))
     )
