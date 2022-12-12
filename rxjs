@@ -46,6 +46,12 @@ ngAfterViewInit(): void {
       })
     )
     -----------------------------------------------
+        pair with zip, shortcut to above
+     return zip([bear, lion]).pipe(
+      map(item => console.log('lion is ' + item[0].name + ' bear called '+item[1].name))
+    )
+   
+    -----------------------------------------------
     extract inner observables
  let list5 = of(1, 2, 3);
     let list6 = of(1, 2);
@@ -55,8 +61,4 @@ ngAfterViewInit(): void {
       })
     );
     -----------------------------------------------
-    pair with zip, shortcut to above
-     return zip([bear, lion]).pipe(
-      map(item => console.log('lion is ' + item[0].name + ' bear called '+item[1].name))
-    )
-    ----------------------------------------------
+
