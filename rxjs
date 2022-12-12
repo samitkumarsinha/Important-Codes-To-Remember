@@ -26,6 +26,12 @@ ngAfterViewInit(): void {
       
   <input type="text" #t1>
   --------------------------------------------
+  area of rectangle using combinelatest two text
+  
+      let t11 = fromEvent(this.t1.nativeElement, 'blur').pipe(map((item: any) => item.target.value))
+      let t22 = fromEvent(this.t2.nativeElement, 'blur').pipe(map((item: any) => item.target.value))
+      combineLatest([t11,t22]).subscribe(([t1,t2]) => console.log(t1*t2))
+  --------------------------------------------
   map two arrays
    getData() {
     let bear = [{name: 'aa', age:20}, {name: 'bb', age:20}, {name: 'cc', age:20}, {name: 'dd', age:20}]
