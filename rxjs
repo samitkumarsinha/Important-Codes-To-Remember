@@ -1,4 +1,7 @@
 mouse event
+@ViewChild('mydiv') mydiv!: ElementRef;
+@ViewChild('t1') t1!: ElementRef;
+
 ngAfterViewInit(): void {
     fromEvent(document.body, 'click')
       .pipe(
@@ -11,6 +14,17 @@ ngAfterViewInit(): void {
         console.log(c);
       });
   }
+  --------------------------------------------
+  text blur event
+  
+   fromEvent(this.t1.nativeElement, 'blur')
+      .pipe(
+        map((item: any) => {
+          return item.target.value
+        })
+      ).subscribe(console.log)
+      
+  <input type="text" #t1>
   --------------------------------------------
   map two arrays
    getData() {
@@ -34,3 +48,5 @@ ngAfterViewInit(): void {
         return list6.pipe(map((innerValue) => item * innerValue));
       })
     );
+    -----------------------------------------------
+    
