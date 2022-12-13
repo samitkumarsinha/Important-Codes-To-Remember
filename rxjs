@@ -89,3 +89,11 @@ ngAfterViewInit(): void {
       mergeAll()
     );
     ---------------------------------------------------------
+    on object
+     let list7 = this.http.get<any>('https://jsonplaceholder.typicode.com/users')
+    return list7.pipe(
+      mergeMap((item: any) => {
+        return item.map((item: any) => item.id)
+      }),
+    )
+    ---------------------------------------------------------------
