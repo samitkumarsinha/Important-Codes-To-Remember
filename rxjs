@@ -69,5 +69,13 @@ ngAfterViewInit(): void {
       })
     );
     --------------------------------------------------
-    
+    mergemap with object
+        let list1 = of({ name: 'hound' }, { name: 'mastiff' });
+      return list1.pipe(
+      mergeMap((item: any) => {
+        return this.http.get<any>(
+          'https://dog.ceo/api/breed/' + item.name + '/list'
+        );
+      })
+    );
     
