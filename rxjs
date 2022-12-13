@@ -61,4 +61,13 @@ ngAfterViewInit(): void {
       })
     );
     -----------------------------------------------
-
+ let list1 = of(1, 2);
+    let list2 = of('A', 'B');
+    return list1.pipe(
+      concatMap((list1Value) => {
+        return list2.pipe(map((list2Value) => list1Value + list2Value));
+      })
+    );
+    --------------------------------------------------
+    
+    
