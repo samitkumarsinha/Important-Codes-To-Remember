@@ -78,4 +78,14 @@ ngAfterViewInit(): void {
         );
       })
     );
-    
+    ------------------------------------------------------
+    flattening with mergeall
+     return list1.pipe(
+      map((item: any) => {
+        return this.http.get<any>(
+          'https://dog.ceo/api/breed/' + item.name + '/list'
+        );
+      }),
+      mergeAll()
+    );
+    ---------------------------------------------------------
