@@ -97,3 +97,13 @@ ngAfterViewInit(): void {
       }),
     )
     ---------------------------------------------------------------
+    with json array
+ return list3.pipe(
+      mergeMap((item: any) => {
+        let inner = item.map((item: any) => item)
+        return list4.pipe(map((item: any)=> {
+          return {item, inner}
+        }))
+      })
+    )
+    ----------------------------------------------------------------
