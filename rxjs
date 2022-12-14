@@ -152,3 +152,17 @@ switchmap used in subscribing to url by passing arguments from query param, each
         })
       ).subscribe(console.log)
       --------------------------------------------------------------------------
+      get value from textbox
+       fromEvent(this.t1.nativeElement, 'keyup')
+      .pipe(
+        switchMap((item: any) => {
+          return item.target.value === ''
+            ? ''
+            : this.ds.getData(item.target.value);
+        })
+      )
+      .subscribe(console.log);
+      ------------------------
+      in service pass id as parameter
+      return this.http.get<any>('https://jsonplaceholder.typicode.com/posts/' + id)
+      --------------------------------------------------------------------------
