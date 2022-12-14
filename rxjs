@@ -145,3 +145,10 @@ fromEvent(window, 'scroll').pipe(
       let ob2 = of(1,6, 9)
       combineLatest([ob1, ob2]).subscribe(console.log)
   -------------------------------------------------------------------------
+switchmap used in subscribing to url by passing arguments from query param, each time new observable created
+ this.route.queryParams.pipe(
+        switchMap((item: Params) => {
+          return this.ds.getData(item['id'])
+        })
+      ).subscribe(console.log)
+      --------------------------------------------------------------------------
