@@ -107,3 +107,14 @@ ngAfterViewInit(): void {
       })
     )
     ----------------------------------------------------------------
+ use mergeAll with of (use from with json object)
+of([2, 3, 4]).pipe(
+  mergeAll()
+).subscribe(v => console.log(v));
+// outputs 2, 3, 4
+If you use from it will work too:
+
+from([2, 3, 4])
+  .subscribe(v => console.log(v));
+// outputs 2, 3, 4
+------------------------------------------------------------------------
