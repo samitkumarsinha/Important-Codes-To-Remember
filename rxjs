@@ -126,3 +126,22 @@ from([2, 3, 4])
   .subscribe(v => console.log(v));
 // outputs 2, 3, 4
 ------------------------------------------------------------------------
+switchmap
+ fromEvent(window,'click').pipe(
+        switchMap(item => interval(500))
+      ).subscribe(console.log)
+------------------------------------------------------------------------
+fromEvent(window, 'scroll').pipe(
+      map((item) => console.log(item))).subscribe(console.log);
+
+-------------------------------------------------------------------------
+    fromEvent(document.body, 'click')
+      .pipe(
+        debounceTime(10),
+        map((item: any) => {
+          return { x: item.clientX, y: item.clientY };
+        })
+      ).subscribe(console.log)
+      let ob2 = of(1,6, 9)
+      combineLatest([ob1, ob2]).subscribe(console.log)
+  -------------------------------------------------------------------------
