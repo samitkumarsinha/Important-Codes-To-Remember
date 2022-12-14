@@ -166,3 +166,10 @@ switchmap used in subscribing to url by passing arguments from query param, each
       in service pass id as parameter
       return this.http.get<any>('https://jsonplaceholder.typicode.com/posts/' + id)
       --------------------------------------------------------------------------
+with reactive form textbox
+  this.myform.get('txt1')?.valueChanges.pipe(
+      switchMap((item: any) => {
+        return item === '' ? '' : this.ds.getData(item)
+      })
+    ).subscribe(console.log)
+    ----------------------------------------------------------------------------
