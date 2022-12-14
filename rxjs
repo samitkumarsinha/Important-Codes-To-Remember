@@ -173,3 +173,16 @@ with reactive form textbox
       })
     ).subscribe(console.log)
     ----------------------------------------------------------------------------
+    mergemap with forkjoin
+     let list3 = from([
+      { id: 1, name: 'hound' },
+      { id: 2, name: 'mastiff' },
+    ]);
+     return list3.pipe(
+      mergeMap((item) => {
+        let url1$ = this.http.get('https://dog.ceo/api/breed/' + item.name + '/list')
+        let url2$ = this.http.get('https://dog.ceo/api/breed/' + item.name + '/images/random')
+        return forkJoin([url1$, url2$])
+      })
+    )
+    ---------------------------------------------------------------------------------
