@@ -68,6 +68,14 @@ ngAfterViewInit(): void {
         return list2.pipe(map((list2Value) => list1Value + list2Value));
       })
     );
+    -------------------------------------------------
+    let list5 = of(1,2,3,4)
+    let list6 = of('A','B','C','D')
+     return list5.pipe(
+      switchMap((item) => {
+        return list6.pipe(map((item1)=> item+item1))
+      })
+    )
     --------------------------------------------------
     mergemap with object
         let list1 = of({ name: 'hound' }, { name: 'mastiff' });
