@@ -186,3 +186,10 @@ with reactive form textbox
       })
     )
     ---------------------------------------------------------------------------------
+    produce stream with timeinterval with delay
+      return list5.pipe(
+      concatMap(item => {
+        return of(item).pipe(delay(1000));
+      })
+    )
+    -----------------------------------------------------------------------------------
