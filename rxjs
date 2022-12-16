@@ -197,3 +197,21 @@ with reactive form textbox
      const api = (id: any) => this.http.get(`https://jsonplaceholder.typicode.com/todos/${id}`)
     return of(1, 2, 3, 4, 5).pipe(concatMap((id) => from(api(id)).pipe(delay(1000))));
   -----------------------------------------------------------------------------------------
+  get items by id
+   let list7 = this.http.get<any[]>(
+      'https://jsonplaceholder.typicode.com/users'
+    );
+    
+     const obs = of(1, 2, 3, 4, 5, 6);
+    return obs.pipe(
+      mergeMap((item: any) => {
+        return list7.pipe(
+          map((item1: any) => {
+            return item1.find((items: any) => {
+              return items.id === item
+            })
+          })
+        )
+      })
+    )
+    ----------------------------------------------------------------------------------------
