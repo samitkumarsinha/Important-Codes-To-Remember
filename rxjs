@@ -215,3 +215,17 @@ with reactive form textbox
       })
     )
     ----------------------------------------------------------------------------------------
+use filter on above
+ return obs.pipe(
+      mergeMap((item: any) => {
+        return list7.pipe(
+          map((item1: any) => {
+            return item1.find((items: any) => {
+              return items.id === item
+            })
+          }),
+          filter((item: any) => item.id > 4)
+        )
+      })
+    )
+    --------------------------------------------------------------------------------------------
