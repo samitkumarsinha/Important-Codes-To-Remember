@@ -229,3 +229,5 @@ use filter on above
       })
     )
     --------------------------------------------------------------------------------------------
+concatall/mergeall
+      return of(list5, list6).pipe(map((item) => item)).pipe(mergeAll())
