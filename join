@@ -85,3 +85,15 @@ convert to observable
     console.log(e.clientX, e.clientY)
   }
   --------------------------------------------------------------------------------------------
+  left join on two objects
+  forkJoin([emp, details]).pipe(
+      map(([_emp, _details]) =>
+        _emp.map((item) => {
+          return ( {
+            ...item,
+            details: _details.filter((item1) => item1.id === item.id)
+          })
+        })
+      )
+    ).subscribe(console.log)
+    -----------------------------------------------------------------------------------------
