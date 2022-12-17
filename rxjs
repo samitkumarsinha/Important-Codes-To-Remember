@@ -231,3 +231,29 @@ use filter on above
     --------------------------------------------------------------------------------------------
 concatall/mergeall
       return of(list5, list6).pipe(map((item) => item)).pipe(mergeAll())
+      
+  -----------------------------------------------------------------------------------------------
+  left join on two objects
+   let emp = of([
+      { id: 1, name: 'aa', age: 20 },
+      { id: 2, name: 'bb', age: 21 },
+      { id: 3, name: 'cc', age: 22 },
+      { id: 4, name: 'dd', age: 23 }
+    ]);
+    let details = of([
+      { id: 1, address: 'ee'},
+      { id: 1, address: 'ff' },
+      { id: 2, address: 'gg' },
+      { id: 2, address: 'hh' }
+    ]);
+  forkJoin([emp, details]).pipe(
+      map(([_emp, _details]) =>
+        _emp.map((item) => {
+          return ( {
+            ...item,
+            details: _details.filter((item1) => item1.id === item.id)
+          })
+        })
+      )
+    ).subscribe(console.log)
+    --------------------------------------------------------------------------------------------------
