@@ -251,9 +251,10 @@ concatall/mergeall
         _emp.map((item) => {
           return ( {
             ...item,
-            details: _details.filter((item1) => item1.id === item.id)
+            details: _details.filter((item1) => item1.id === item.id) //  details: _details.filter((item1) => item1.id === item.id).map((item) => ({'address': item.address}))
           })
         })
       )
     ).subscribe(console.log)
     --------------------------------------------------------------------------------------------------
+    
