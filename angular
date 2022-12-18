@@ -1,4 +1,4 @@
-internal bookmark
+internal bookmark link
   <p (click)="scrollToElement(target)">See Benchmark Riskometer</p>
 <div #target>&nbsp;</div>
 -------------
@@ -6,4 +6,19 @@ internal bookmark
     console.log($element);
     $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
--------------
+--------------------------------------------------------------------------
+import custom js
+inside assets create func.js
+function myfunc(){ alert('hjjjh'); }
+insert path in angular.json 
+architect > script array
+ "scripts": [
+              "src/assets/func.js"
+            ]
+
+in ts declare file and use
+declare const myfunc:any;
+ ngOnInit(): void {
+    myfunc();
+  }
+--------------------------------------------------------------------------------
