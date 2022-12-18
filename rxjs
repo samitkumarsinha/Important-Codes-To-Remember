@@ -279,3 +279,15 @@ concatall/mergeall
       })
     );
     -----------------------------------------------------------------------------------------------------
+    the above object can be created this way 
+    return forkJoin([list7, list8, list9]).pipe(
+      map(([users, albums, posts]) => {
+        return users.map((user) => {
+          let obj = Object.assign({}, user);
+          obj.albums = albums.filter((item) => item.userId === user.id);
+          obj.posts = posts.filter((item) => item.userId === user.id);
+          return obj;
+        });
+      })
+    );
+    ----------------------------------------------------------------------------------------------------
