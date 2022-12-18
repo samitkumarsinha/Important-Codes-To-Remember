@@ -257,4 +257,25 @@ concatall/mergeall
       )
     ).subscribe(console.log)
     --------------------------------------------------------------------------------------------------
-    
+    join 3 tables
+     let list7 = this.http.get<any[]>(
+      'https://jsonplaceholder.typicode.com/users'
+    );
+    let list8 = this.http.get<any[]>(
+      'https://jsonplaceholder.typicode.com/albums'
+    );
+    let list9 = this.http.get<any[]>(
+      'https://jsonplaceholder.typicode.com/posts'
+    );
+      return forkJoin([list7, list8, list9]).pipe(
+      map(([users, albums, posts]) => {
+        return users.map((user) => {
+          return {
+            ...user,
+            albums: albums.filter((item) => item.userId === user.id),
+            posts: posts.filter((item) => item.userId === user.id),
+          };
+        });
+      })
+    );
+    -----------------------------------------------------------------------------------------------------
