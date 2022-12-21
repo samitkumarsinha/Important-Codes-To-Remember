@@ -41,3 +41,31 @@ var arr = ["apple", "mango", "apple",
 let myset = [...new Set(numberStrings)];
 console.log(myset);
 ----------------------------------------------------------------------------
+set css from javascript
+css
+html{
+    box-sizing: border-box;
+    --win-height: 0px;
+}
+.content{
+   width: 100%;
+   height: calc(var(--win-height) * 1px);
+   background-color: aliceblue;
+}
+----------------
+html
+<div class="content">
+....
+</div>
+ <script>
+        window.onload = () => {
+            let height = window.innerHeight;
+            document.querySelector('.content').style.setProperty('--win-height', height - 80)
+        }
+        window.addEventListener('resize', () => {
+            let height = window.innerHeight;
+            document.querySelector('.content').style.setProperty('--win-height', height - 80)
+        })
+    </script>
+    ---------------------------------------------------------------------------------
+
