@@ -36,3 +36,8 @@ var arr = ["apple", "mango", "apple",
       
     console.log(removeDuplicates(arr));
     -----------------------------------------------------------------------
+    another way to remove duplicate
+    let numberStrings = ["one", "two", "one", "two"];
+let myset = [...new Set(numberStrings)];
+console.log(myset);
+----------------------------------------------------------------------------
