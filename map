@@ -120,7 +120,8 @@ inner join with combinelatest
   select fields in ts using map
    getData() {
     this.ds.getData().subscribe((item: any) => {
-      console.log(item.data)
+      console.log(item.data);
+      this.user = item.data;
     });
   }
   -----------------------------------------------------------------------------------------------------
