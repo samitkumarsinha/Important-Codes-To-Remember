@@ -22,3 +22,13 @@ declare const myfunc:any;
     myfunc();
   }
 --------------------------------------------------------------------------------
+for the hamburger menu to work in angular with ng bootstrap
+in angular.json
+  "styles": [
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+ ----------------------------------------------------------------------------------
