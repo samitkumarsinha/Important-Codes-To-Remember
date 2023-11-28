@@ -32,3 +32,12 @@ export class ContactComponent {
 
 }
 ---------------------------------------------
+shorten myform.get('username')
+ts
+  get username() {
+    return this.myform.get('username');
+  }
+html
+<span *ngIf="username.hasError('required') && username.touched">
+  Username is required
+</span>
