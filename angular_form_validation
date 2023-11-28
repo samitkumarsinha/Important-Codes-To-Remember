@@ -41,3 +41,13 @@ html
 <span *ngIf="username.hasError('required') && username.touched">
   Username is required
 </span>
+--------------------------------------------
+setvalue and patchvalue
+ testget(){
+    alert(this.myform.get('username').value)
+  }
+  testset(){
+    // this.myform.get('username').setValue('sss')
+    // this.myform.setValue({username:'abc', password: 'mmm'})
+    this.myform.patchValue({username:'abc'})
+  }
