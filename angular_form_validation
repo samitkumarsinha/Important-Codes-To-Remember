@@ -49,5 +49,6 @@ setvalue and patchvalue
   testset(){
     // this.myform.get('username').setValue('sss')
     // this.myform.setValue({username:'abc', password: 'mmm'}) //both mandatory
-    this.myform.patchValue({username:'abc'})// any one
+    // this.myform.patchValue({username:'abc'})// any one
+        this.myform.controls.username.setValue('abc...');
   }
