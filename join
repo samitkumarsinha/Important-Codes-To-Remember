@@ -97,3 +97,21 @@ convert to observable
       )
     ).subscribe(console.log)
     -----------------------------------------------------------------------------------------
+
+another way to left join on two objects
+getJoinedData(): Observable<any> {
+    const usersObservable = this.http.get<User[]>(`${this.base_url}/users`);
+    const postsObservable = this.http.get<Post[]>(`${this.base_url}/posts`);
+
+    return forkJoin([usersObservable, postsObservable]).pipe(
+      mergeMap(([users, posts]) =>
+        users.map((user) => ({
+          id: user.id,
+          name: user.name,
+          posts: posts.filter((post) => post.userId === user.id),
+        }))
+      ),
+      filter((result) => result.posts.length > 0)
+    );
+  }
+------------------------------------------------------------------------------------------------
