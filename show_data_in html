@@ -1,0 +1,16 @@
+
+[
+{id: 1, name: 'Leanne Graham', posts: Array(10)}
+{id: 2, name: 'Ervin Howell', posts: Array(10)}
+]
+show data and array in html
+<div *ngFor="let user of joinedData">
+      <p>ID: {{ user.id }}</p>
+      <p>Name: {{ user.name }}</p>
+      <div *ngFor="let post of user.posts">
+        <p>Post Title: {{ post.title }}</p>
+        <p>Post Body: {{ post.body }}</p>
+      </div>
+      <hr />
+    </div>
+-------------------------------------------------
