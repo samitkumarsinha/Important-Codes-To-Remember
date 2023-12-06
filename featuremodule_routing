@@ -1,0 +1,20 @@
+app -> about, home
+app/ testmodule -> test1, test2
+-----------------
+app comp.html
+<router-outlet></router-outlet>
+----------
+app routing
+const routes: Routes = [
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'test', loadChildren: ()=> import ('./test/test.module') .then(m => m.TestModule)}
+
+];
+---------------------------
+test routing
+const routes: Routes = [
+  {path: 'test1', component: Test1Component},
+  {path: 'test2', component: Test2Component}
+];
+------------------------------------------------------------
