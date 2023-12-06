@@ -18,3 +18,35 @@ const routes: Routes = [
   {path: 'test2', component: Test2Component}
 ];
 ------------------------------------------------------------
+fetch value from route url
+app routing module
+const routes: Routes = [
+  {path: '', component: SiteComponent, data: { hideMenu: 'a' }},
+  {path: 'site', children: [
+  {path: 'home', component: HomeComponent, data: { hideMenu: 'b' }},
+  {path: 'about', component: AboutComponent, data: { hideMenu: 'c' }}
+  ]},
+  {path: 'test', loadChildren: ()=> import ('./test/test.module') .then(m => m.TestModule)}
+
+];
+
+app.component.ts
+import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+
+ showMenu = false;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((item: any) => {
+      console.log(item.url)
+      if(item.url.startsWith('/site')){
+        this.showMenu = true;
+      }else{
+        this.showMenu = false;
+      }
+    });
+  }
+------------------------------------------------------------------------
