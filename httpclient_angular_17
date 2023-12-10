@@ -1,0 +1,45 @@
+main.s
+  import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, appConfig)
+  .catch((err) => console.error(err));
+-------------------
+  app component ts
+  import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { UsersComponent } from './users/users.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './data.service';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, UsersComponent, HttpClientModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  providers: [DataService]
+})
+export class AppComponent {
+  title = 'ng2';
+}
+
+----------------------------
+  data.service.ts
+  import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+  base_url = 'https://jsonplaceholder.typicode.com'
+  constructor(private http: HttpClient) { }
+  getData(): Observable<any>{
+    return this.http.get<any>(`${this.base_url}/users`)
+  }
+}
+----------------------------------------------------------------
