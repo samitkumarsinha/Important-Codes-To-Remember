@@ -1,1 +1,6 @@
+create router module
 ng generate module app-routing --flat --module=app
+
+create app module
+ng generate module app
+
